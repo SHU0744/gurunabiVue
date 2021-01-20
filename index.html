@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="グルメ検索サイトです。">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;900&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>グルメ検索サイト</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-wrap">
+            <div class="header-flex">
+                <img src="img/icon.png" alt="">
+                <h1>簡単グルメ検索</h1>
+                <img src="img/icon2.png" alt="">
+            </div>
+        </div>
+    </header>
+    <main class="main">
+        <div class="main-wrap">
+            <div id="app" class="main-app">
+                <div class="searchFlex">
+                    <div class="search">
+                        <label class="searchArea">検索エリア</label>
+                        <select name="select" id="" v-model:value="selectKeyword">
+                            <option v-for="(value , key) in prefCodes" :value="key">{{ value }}</option>
+                        </select>
+                        <input type="text" v-model.trim="inputKeyword" placeholder="場所・ジャンル・店名">
+                        <select name="selectFoods" id="" v-model:value="selectFoods" class="selectFoods">
+                            <option value="" disabled>ジャンル</option>
+                            <option :value="food" v-for="food in foods" :key="food">{{ food }}</option>
+                        </select>
+                        <label>個室あり <input type="checkbox" v-model:checked="checked"
+                                v-on:change="checkPrivate()"></label>
+                        <button @click="searchclick()" class="btnSearch check" v-bind:disabled="disabled">検索</button>
+                    </div>
+                </div>
+                <div class="imgLunch" v-show="img">
+                    <img src="img/lunch 1.png" alt="">
+                </div>
+
+                <p v-show="loading" class="message">{{ message}}</p>
+                <p v-show="loading" class="message">{{ message2 }}</p>
+
+                <section id="sectionItme">
+                    <!-- ここに挿入する -->
+                </section>
+
+                <div class="credit">
+                    <a href="https://api.gnavi.co.jp/api/scope/" target="_blank">
+                        <img src="https://api.gnavi.co.jp/api/img/credit/api_265_65.gif" width="265" height="65"
+                            border="0" alt="グルメ情報検索サイト ぐるなび">
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- vue.js読み込み -->
+    <script src="js/vue.min.js"></script>
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.21.0/dist/axios.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
