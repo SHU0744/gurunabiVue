@@ -89,37 +89,64 @@ new Vue({
                     this.disabled = true;
                     btn.classList.add('check');
                 }
-            } else {
 
                 if (this.selectFoods) {
-                    this.disabled = false;
-                    btn.classList.remove('check');
-                } else {
                     this.disabled = true;
                     btn.classList.add('check');
+
                 }
+
+
+            } else {
+
+                if (!this.selectFoods) {
+                    this.disabled = true;
+                    btn.classList.add('check');
+
+                }
+
+                if (this.selectFoods && this.selectKeyword) {
+                    this.disabled = false;
+                    btn.classList.remove('check');
+                }
+
+
 
             }
         },
         //選択されているかどうか監視
         selectFoods: function (val) {
             var btn = document.querySelector('.btnSearch');
+            // console.log(val);
+
+            // let selectFood = "";
 
             if (this.selectFoods === "指定なし") {
                 this.selectFoods = ""
             }
+
             if (val) {
+                // console.log(val);
                 if (this.selectKeyword) {
                     this.disabled = false;
                     btn.classList.remove('check');
+                    // console.log("ture")
 
                 } else {
                     this.disabled = true;
                     btn.classList.add('check');
+                    // console.log("false")
                 }
-            } else {
 
                 if (this.inputKeyword) {
+                    this.disabled = true;
+                    btn.classList.add('check');
+                }
+
+
+            } else {
+
+                if (this.inputKeyword && this.selectKeyword) {
                     this.disabled = false;
                     btn.classList.remove('check');
                 } else {
