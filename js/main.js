@@ -1,7 +1,4 @@
 
-
-// console.log(btn);
-
 new Vue({
     el: '#app',
     data: {
@@ -53,6 +50,7 @@ new Vue({
     watch: {
         //入力してるかどうか監視
 
+        //県
         selectKeyword: function (val) {
             var btn = document.querySelector('.btnSearch');
 
@@ -62,9 +60,15 @@ new Vue({
 
             if (val) {
                 if (this.inputKeyword || this.selectFoods) {
-                    this.disabled = false;
 
-                    btn.classList.remove('check');
+                    if (this.inputKeyword && this.selectFoods) {
+                        this.disabled = true;
+                        btn.classList.add('check');
+                    } else {
+                        this.disabled = false;
+                        btn.classList.remove('check');
+                    }
+
 
                 } else {
                     this.disabled = true;
@@ -77,6 +81,7 @@ new Vue({
             }
         },
 
+        //フリーワード
         inputKeyword: function (val) {
             var btn = document.querySelector('.btnSearch');
             if (val) {
@@ -114,7 +119,9 @@ new Vue({
 
             }
         },
+
         //選択されているかどうか監視
+        //ジャンル
         selectFoods: function (val) {
             var btn = document.querySelector('.btnSearch');
             // console.log(val);
